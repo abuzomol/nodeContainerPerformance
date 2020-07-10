@@ -235,8 +235,8 @@ int main() {
 
     int N = 40000000, B = 4;
 
-    //testPerformance(nodeSizes, valuesSizes);
-    testCahce(N, B);
+    testPerformance(nodeSizes, valuesSizes);
+    //testCahce(N, B);
 
     return 0;
 }
