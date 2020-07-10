@@ -25,7 +25,7 @@ void accessContainer(double *tree, int size) {
     auto finish = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = finish - start;
     //cout << "time to access data: " << elapsed.count() << endl;
-     //cout << sum << endl;
+    //cout << sum << endl;
 }
 
 //access the container in a meaningful way to estimate memory references. Tree is double dimensional array
@@ -120,7 +120,7 @@ pair<double, string> testPointerVector(int N, int B) {
     for (int i = 0; i < N; i++) {
         void *place = &tree[i];
         NodeV *f = new(place) NodeV(B);
-       // tree[i] = *f;
+        // tree[i] = *f;
     }
 //    for (int i = 0; i < N; i++)
 //        for (int j = 0; j < B; j++)
@@ -190,10 +190,7 @@ pair<double, string> testSingleArray(int N, int B) {
     return make_pair(d, s);
 }
 
-int main() {
-    vector<int> nodeSizes = {1000000, 2000000, 3000000, 40000000};
-    vector<int> valuesSizes = {1, 2, 3, 4, 5,6,7,8,9,10};
-
+void testPerformance(vector<int> &nodeSizes, vector<int> &valuesSizes) {
     for (int i = 0; i < nodeSizes.size(); i++) {
         int N = nodeSizes[i];
         for (int j = 0; j < valuesSizes.size(); j++) {
@@ -220,6 +217,26 @@ int main() {
             cout << "------------------------" << endl;
         }
     }
+}
+
+
+void testCahce(int N, int B) {
+    //cout << testPointerPointer(N, B).first;
+      //cout << testVectorPointer(N, B).first;
+      //cout<< testPointerVector(N, B).first;
+      cout<< testVectorVector(N, B).first;
+     // cout<<testVectorArray(N, B).first;
+    // cout <<testSingleArray(N, B).first;
+}
+
+int main() {
+    vector<int> nodeSizes = {1000000, 2000000, 3000000, 40000000};
+    vector<int> valuesSizes = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    int N = 40000000, B = 4;
+
+    //testPerformance(nodeSizes, valuesSizes);
+    testCahce(N, B);
 
     return 0;
 }
